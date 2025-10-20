@@ -15,17 +15,37 @@ public class MathUtility {
     //0, 20 -> boundary value - biên giới của tập giá trị
     //         xích qua 1 xíu là sang vùng invalid boundary
     //0, xích nhẹ sang trái 1 đơn vị, không ổn, không tính được
+//    public static long getFactorial(int n) {
+//        if (n < 0 || n > 20) {
+//            //ném ngoại lệ, vừa dừng hàm ngay, không có value nào được trả về
+//            throw new IllegalArgumentException("n must be between 0 and 20");
+//        }
+//
+//        //biến trung gian để tính phép nhân
+//        long result = 1;
+//        for (int i = 1; i <= n ; i++) {
+//            result *= i;
+//        }
+//        return result;
+//    }
+//VIẾT THEO PHONG CÁCH ĐỆ QUY
+    //5! = 4! * 5
+    //4! = 3! * 4
+    //3! = 2! * 3
+    //2! = 1! * 2
+    //1! = 1
+    //0! = 1
+    //KẾT LUẬN: N! = N * (N-1)!;  n > 0
+    //        RECURSION - GỌI LẠI CHÍNH MÌNH VỚI QUY MÔ NHỎ HƠN
     public static long getFactorial(int n) {
         if (n < 0 || n > 20) {
             //ném ngoại lệ, vừa dừng hàm ngay, không có value nào được trả về
             throw new IllegalArgumentException("n must be between 0 and 20");
         }
 
-        //biến trung gian để tính phép nhân
-        long result = 1;
-        for (int i = 1; i <= n ; i++) {
-            result *= i;
-        }
-        return result;
+        if (n == 1 || n == 0)
+            return 1;
+
+        return n * getFactorial(n - 1);
     }
 }
